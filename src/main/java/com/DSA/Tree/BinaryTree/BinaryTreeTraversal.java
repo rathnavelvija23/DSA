@@ -1,6 +1,6 @@
 package com.DSA.Tree.BinaryTree;
 
-
+// Inorder Traversal - Pre Oredr Traversal - PostOrder Traversal
 class TBSTNode{
     int data;
     TBSTNode left;
