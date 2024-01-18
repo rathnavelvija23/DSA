@@ -2,12 +2,10 @@ package com.DSA.Java8;
 
 import org.springframework.util.StringUtils;
 
+import javax.sound.midi.Soundbank;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class InterviewPrepUpd {
@@ -22,6 +20,22 @@ public class InterviewPrepUpd {
                     new DataEntry("2022-02-02", "1"),
                     new DataEntry("2022-02-03", "10")
             );
+
+            //Update the date field in employee add one day to the existing dates
+            List<Employee1> emplist = new ArrayList<Employee1>();
+            emplist.add(new Employee1("Vija", "Delhi", 21, LocalDate.now()));
+            emplist.add(new Employee1("Vija-1", "Delhi1", 22, LocalDate.now()));
+            //using seprate method in employee class
+            System.out.println("data   "+ emplist.stream().map(Employee1::modifyDate).collect(Collectors.toList()));
+            //using Map
+            emplist.stream().map( e -> {
+                e.setDate(e.getDate().plusDays(1));
+                return e;
+            }).collect(Collectors.toList()).forEach(System.out::println);
+            //using ForEach
+            emplist.stream().forEach( e -> e.setDate(e.getDate().plusDays(1)));
+            emplist.stream().forEach(System.out::println);
+
 
             // Calculate monthly sum using streams
             Map<String, Integer> monthlySumMap = dataList.stream()
