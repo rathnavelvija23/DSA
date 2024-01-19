@@ -10,16 +10,56 @@ public class SortingUsingStreams {
         simpleSortbyKey();
         simpleSortbyValue();
         simpleSortbyValuegetAsMap();
+        simpleSortbyValuegetAsMapForEach();
+        modifytheDateinMap();
+        markCityAsPassWhenEmpIdisabove3();
+
+    }
+
+    private static void markCityAsPassWhenEmpIdisabove3() {
+        System.out.println("Modified Map based on condition");
+        Objectcreate().entrySet().stream().collect(Collectors.toMap(
+                Map.Entry::getKey,
+                entry -> {
+                    Employee emp = entry.getValue();
+                    if(emp.getEmpId() >= 3)
+                        emp.setCity("Passed verification");
+                    return emp;
+
+                }, (e1,e2) -> e1, HashMap::new
+        )).forEach((k,v) -> System.out.println(k +" "+ v) );
+    }
+
+    private static void modifytheDateinMap() {
+        System.out.println("Modified Map");
+        Objectcreate().entrySet().stream().collect(
+                Collectors.toMap(Map.Entry::getKey,
+                        entry -> {
+                            Employee emp = entry.getValue();
+                            if(!emp.getCity().equals("Madurai-2"))
+                                emp.setDate(LocalDate.now().plusDays(2));
+                            return emp;
+                        },(e1,e2) -> e1,LinkedHashMap::new)).forEach((k,v) -> System.out.println(k +" "+ v));
 
     }
 
     private static void simpleSortbyValuegetAsMap() {
 
-        System.out.println( Objectcreate().entrySet().stream()
+        Map<Integer,Employee> empMap = Objectcreate().entrySet().stream()
                 .sorted(Map.Entry.comparingByValue(
                         Comparator.comparing(Employee::getName).thenComparing(Employee::getCity)))
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (v1, v2) -> v2, LinkedHashMap::new)));
-        
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (v1, v2) -> v2, LinkedHashMap::new))
+                ;
+        System.out.println(empMap);
+    }
+
+    private static void simpleSortbyValuegetAsMapForEach() {
+
+       Objectcreate().entrySet().stream()
+                .sorted(Map.Entry.comparingByValue(
+                        Comparator.comparing(Employee::getName).thenComparing(Employee::getCity)))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (v1, v2) -> v2, LinkedHashMap::new))
+                .forEach( (k,v) ->System.out.println( k +" "+v));
     }
 
     private static void simpleSortbyKey() {
@@ -27,9 +67,14 @@ public class SortingUsingStreams {
        // cannot be cast to class java.lang.Comparable - Runtime error
        // Objectcreate().entrySet().stream().sorted().collect(Collectors.toList());
 
-        System.out.println("SimpleSortbyKey :"+
+        System.out.println("SimpleSortbyKey-Ascending :"+
                 Objectcreate().entrySet().stream()
                         .sorted(Map.Entry.comparingByKey())
+                        .collect(Collectors.toList()));
+
+        System.out.println("SimpleSortbyKey-Descending :"+
+                Objectcreate().entrySet().stream()
+                        .sorted(Map.Entry.comparingByKey(Collections.reverseOrder()))
                         .collect(Collectors.toList()));
     }
 
@@ -43,6 +88,12 @@ public class SortingUsingStreams {
                 Objectcreate().entrySet().stream()
                         .sorted(Map.Entry.comparingByValue(Comparator.comparing(Employee::getName)
                         .thenComparing(Employee::getCity)))
+                        .collect(Collectors.toList()));
+
+        System.out.println("SimpleSortbyKey-Descending :"+
+                Objectcreate().entrySet().stream()
+                        .sorted(Map.Entry.comparingByValue(Comparator.comparing(Employee::getName)
+                                .thenComparing(Employee::getCity).reversed()))
                         .collect(Collectors.toList()));
 
     }
