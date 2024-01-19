@@ -101,9 +101,10 @@ public class SortingUsingStreams {
     public static Map<Integer,Employee> Objectcreate(){
         Map<Integer,Employee> empMap = new HashMap<>();
         empMap.put(1,new Employee(1,"Vija-1","Madurai-1", LocalDate.parse("2024-01-17")));
-        empMap.put(2,new Employee(2,"Vija-3","Madurai-2", LocalDate.parse("2024-01-18")));
-        empMap.put(3,new Employee(3,"Vija-4","Madurai-5", LocalDate.parse("2024-01-17")));
-        empMap.put(4,new Employee(4,"Vija-2","Madurai-4", LocalDate.parse("2024-01-19")));
+        empMap.put(2,new Employee(6,"Vija-1","Madurai-1", LocalDate.parse("2024-01-17")));
+        empMap.put(3,new Employee(2,"Vija-3","Madurai-2", LocalDate.parse("2024-01-18")));
+        empMap.put(4,new Employee(3,"Vija-4","Madurai-5", LocalDate.parse("2024-01-17")));
+        empMap.put(5,new Employee(4,"Vija-2","Madurai-4", LocalDate.parse("2024-01-19")));
         return empMap;
     }
 
