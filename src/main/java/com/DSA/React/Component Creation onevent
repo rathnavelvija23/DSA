@@ -1,0 +1,31 @@
+import React from 'react';
+
+class MyComponent extends React.Component {
+
+  constructor() {
+    super();
+    this.state = {
+      inputValue: ''
+    };
+  }
+
+  handleChange(event) {
+    this.setState({ inputValue: event.target.value });
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    console.log('Submitted value:', this.state.inputValue);
+  }
+
+  render() {
+    return (
+      <form onSubmit={(e) => this.handleSubmit(e)}>
+        <input type="text" value={this.state.inputValue} onChange={(e) => this.handleChange(e)} />
+        <button type="submit">Submit</button>
+      </form>
+    );
+  }
+}
+
+export default MyComponent;

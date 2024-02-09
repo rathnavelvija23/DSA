@@ -22,9 +22,9 @@ public class IntermediateFunctions {
         System.out.println(emp.stream().collect(Collectors.maxBy(Comparator.comparing(Employee::getAge))).get().getCity());
 
 
-        Map<String,Long> empCity=emp.stream().collect(Collectors.groupingBy(Employee::getCity,
-                Collectors.filtering(p -> p.getAge() > 22, counting())));
-        System.out.println(empCity);
+//        Map<String,Long> empCity=emp.stream().collect(Collectors.groupingBy(Employee::getCity,
+//                Collectors.filtering(p -> p.getAge() > 22, counting())));
+//        System.out.println(empCity);
     }
 
 

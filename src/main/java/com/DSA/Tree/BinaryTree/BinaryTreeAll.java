@@ -18,9 +18,10 @@ public class BinaryTreeAll {
 
     static BSTNode root;
     static BSTNode root1;
-    public BinaryTreeAll() {
-        root = null;
-    }
+//    public BinaryTreeAll() {
+//        root = null;
+//        root1 = null;
+//    }
 
     public BSTNode insert(BSTNode node, int data){
 
@@ -75,19 +76,20 @@ public class BinaryTreeAll {
         root = bTree.insert(root, 50);
         root = bTree.insert(root, 35);
         root = bTree.insert(root, 15);
-        root = bTree.insert(root, 65);
+        root = bTree.insert(root, 75);
         bTree.printTree(root," ");
         System.out.println(bTree.searchTree(root,35));
 
         BinaryTreeAll bTree1 = new BinaryTreeAll();
 
         root1 = bTree1.insert(root1, 55);
+        root1 = bTree1.insert(root1, 20);
         root1 = bTree1.insert(root1, 90);
         root1 = bTree1.insert(root1, 80);
         root1 = bTree1.insert(root1, 50);
         root1 = bTree1.insert(root1, 35);
         root1 = bTree1.insert(root1, 15);
-        root1 = bTree1.insert(root1, 75);
+        root1 = bTree1.insert(root1, 65);
         bTree.printTree(root1," ");
         System.out.println(bTree.searchTree(root1,35));
         System.out.println("Is Identical : "+ isIdenticalTree(bTree.root,bTree1.root1));
@@ -103,6 +105,7 @@ public class BinaryTreeAll {
         }
         return false;
     }
+
 
 
 }

@@ -31,7 +31,8 @@ public class groupingByStreams {
         //Group by city and add the count of empID
         Objectcreate().values().stream().collect(Collectors.groupingBy(
                 Employee::getCity,Collectors.summingDouble(Employee::getEmpId)
-        )).forEach((k,v) -> System.out.println(k +"<--Key : Value -->"+ v));
+        ));
+           //     .forEach((k,v) -> System.out.println(k +"<--Key : Value -->"+ v));
 
     }
 

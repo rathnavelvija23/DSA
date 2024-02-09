@@ -1,0 +1,48 @@
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { createStore } from 'redux';
+import { Provider, connect } from 'react-redux';
+
+// Actions
+const increment = () => ({ type: 'INCREMENT' });
+const decrement = () => ({ type: 'DECREMENT' });
+
+// Reducer
+const initialState = { count: 0 };
+
+const rootReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case 'INCREMENT':
+      return { count: state.count + 1 };
+    case 'DECREMENT':
+      return { count: state.count - 1 };
+    default:
+      return state;
+  }
+};
+
+// Component
+const App = ({ count, increment, decrement }) => (
+  <div>
+    <h1>Counter: {count}</h1>
+    <button onClick={increment}>Increment</button>
+    <button onClick={decrement}>Decrement</button>
+  </div>
+);
+
+// Connect component to Redux
+const mapStateToProps = (state) => ({ count: state.count });
+const mapDispatchToProps = { increment, decrement };
+const ConnectedApp = connect(mapStateToProps, mapDispatchToProps)(App);
+
+// Create Redux store
+const store = createStore(rootReducer);
+
+// Render the app
+ReactDOM.render(
+  <Provider store={store}>
+    <ConnectedApp />
+  </Provider>,
+  document.getElementById('root')
+);
