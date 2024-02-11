@@ -2,6 +2,7 @@ package com.DSA.practice.ListOperations;
 
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -57,6 +58,21 @@ public class Employee {
                     .findFirst().get().intValue();
 
         }
+
+        static Integer addonedaytoDOBAndModifyDeptid(List<Employee> employeeList){
+
+            LinkedHashMap<Long, Employee> list2 = employeeList.stream().collect(Collectors.toMap(e -> e.getEmpId()
+                    , e -> {
+                LocalDate date = LocalDate.parse(e.getDateOfBirth());
+                e.setDateOfBirth(date.plusDays(1).toString());
+                if (e.getDeptId().equals(2))
+                    e.setDeptId(8);
+                return e;
+            }, (v1, v2) -> v1, LinkedHashMap::new));
+
+            System.out.println(list2);
+            return 1;
+        }
     }
 
     public static void main(String[] args) {
@@ -110,6 +126,7 @@ public class Employee {
         System.out.println(Service.getFirstRepeatedORFirstDuplicateDept(list));
         System.out.println(Service.getSecondRepeatedORSecondDuplicateDept(list));
         System.out.println(Service.getNonRepeatedORUniqueSalary(list));
+        Service.addonedaytoDOBAndModifyDeptid(list);
 
     }
 
