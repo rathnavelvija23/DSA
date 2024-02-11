@@ -62,6 +62,13 @@ public class StringOperations {
 
 
         }
+
+        static String modifytheString(String str) {
+            return str.chars().mapToObj(c -> (char) c).filter( c-> !Character.isDigit(c))
+                    .map( c -> c.equals('_') ? String.valueOf('#') : String.valueOf(c))
+                    .collect(Collectors.joining());
+
+        }
     }
 
     public static void main(String[] args) {
@@ -71,6 +78,7 @@ public class StringOperations {
         System.out.println(Operations.nonRepeatedStringGrouping("red green blue white red blue").equals("green white") ? true : false);
         System.out.println(Operations.getLongestString("red green blue orange").equals("orange") ? true : false);
         System.out.println(Operations.getIntStringStartswithOne(new int[]{1, 2, 3, 4, 11, 5, 6, 66}).equals("1,11") ? true : false);
+        System.out.println(Operations.modifytheString("java8_sp3r_j9p").equals("java#spr#jp") ? true : false);
 
     }
 }
