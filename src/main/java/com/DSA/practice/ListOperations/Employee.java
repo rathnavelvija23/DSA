@@ -59,9 +59,9 @@ public class Employee {
 
         }
 
-        static Integer addonedaytoDOBAndModifyDeptid(List<Employee> employeeList){
+        static LinkedHashMap<Long, Employee> addonedaytoDOBAndModifyDeptid(List<Employee> employeeList){
 
-            LinkedHashMap<Long, Employee> list2 = employeeList.stream().collect(Collectors.toMap(e -> e.getEmpId()
+            LinkedHashMap<Long, Employee> map = employeeList.stream().collect(Collectors.toMap(e -> e.getEmpId()
                     , e -> {
                 LocalDate date = LocalDate.parse(e.getDateOfBirth());
                 e.setDateOfBirth(date.plusDays(1).toString());
@@ -70,8 +70,7 @@ public class Employee {
                 return e;
             }, (v1, v2) -> v1, LinkedHashMap::new));
 
-            System.out.println(list2);
-            return 1;
+            return map;
         }
     }
 
@@ -126,7 +125,7 @@ public class Employee {
         System.out.println(Service.getFirstRepeatedORFirstDuplicateDept(list));
         System.out.println(Service.getSecondRepeatedORSecondDuplicateDept(list));
         System.out.println(Service.getNonRepeatedORUniqueSalary(list));
-        Service.addonedaytoDOBAndModifyDeptid(list);
+        System.out.println(Service.addonedaytoDOBAndModifyDeptid(list));
 
     }
 
