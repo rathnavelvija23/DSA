@@ -1,5 +1,6 @@
 package com.DSA.Java8.Map;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class Employee {
@@ -7,6 +8,31 @@ public class Employee {
     private String name;
     private String city;
     private LocalDate date;
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public Employee(int empId, String name, String city, LocalDate date) {
+        this.empId = empId;
+        this.name = name;
+        this.city = city;
+        this.date = date;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
+
+    public Employee(int empId, String name, String city, LocalDate date, double salary) {
+        this.empId = empId;
+        this.name = name;
+        this.city = city;
+        this.date = date;
+        this.salary = salary;
+    }
+
+    private double salary;
 
     public int getEmpId() {
         return empId;
@@ -46,14 +72,10 @@ public class Employee {
                 "empId=" + empId +
                 ", name='" + name + '\'' +
                 ", city='" + city + '\'' +
-                ", date=" + date +
+                ", date=" + date + '\'' +
+                ", salary=" + salary +
                 '}';
     }
 
-    public Employee(int empId, String name, String city, LocalDate date) {
-        this.empId = empId;
-        this.name = name;
-        this.city = city;
-        this.date = date;
-    }
+
 }

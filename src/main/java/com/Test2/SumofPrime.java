@@ -14,7 +14,7 @@ public class SumofPrime {
                18 = 11 + 7 */
     public static void main(String[] args) {
 
-
+        primeNumberorNot(67);
         //  Find duplicates in the list [3,4,6,5,5,2,3] using Java stream; output is 3 & 5
         Scanner scanner = new Scanner(System.in);
         List<Integer> list = new ArrayList<>(Arrays.asList(3, 4, 6, 5, 5, 2, 3));

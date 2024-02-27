@@ -10,12 +10,86 @@ public class InterviewPrep {
 
     public static void main(String[] args) {
 
+        int[] intArray= {1,2,3,4,6,};
+        System.out.println(Arrays.stream(intArray).boxed().collect(Collectors.toList()).stream().collect(Collectors.summingInt(e -> e.intValue())));
+        System.out.println(Arrays.stream(intArray).sum());
+        System.out.println("before"+Arrays.toString(intArray));
+        String str11="vija";
+
+
+        char[] chars1 = str11.toCharArray();
+        int left=0;
+        int right= chars1.length-1;
+        char temp;
+        while(left<right){
+            temp = chars1[left];
+            chars1[left] = chars1[right];
+            chars1[right] = temp;
+            left++;
+            right--;
+        }
+        System.out.println("Chars:::"+Arrays.toString(chars1));
+
+        System.out.println( new String(chars1).chars().mapToObj(c -> String.valueOf((char) c)).collect(Collectors.joining()));
+       String newStr = IntStream.range(0, chars1.length).mapToObj(i -> String.valueOf(chars1[i])).collect(Collectors.joining());
+        System.out.println(newStr);
+
+
+
+
+
+
+
+
+
+
+
+
+
+//
+//        char[] ch=str11.toCharArray();
+//        int left=0;
+//        int right= str11.length()-1;
+//        char temp;
+//
+//        while(left<right){
+//            temp=ch[left];
+//            ch[left]=ch[right];
+//            ch[right]=temp;
+//            left++;
+//            right--;
+//        }
+
+//
+//        int left=0;
+//        int right= intArray.length-1;
+//        int temp;
+//        while(left<right){
+//            temp = intArray[left];
+//            intArray[left] = intArray[right];
+//            intArray[right]=temp;
+//            left++;
+//            right--;
+//        }
+    //    System.out.println("After"+new String(ch));
+
+//        System.out.println( IntStream.range(0,ch.length).mapToObj(i-> String.valueOf(ch[i])).collect(Collectors.joining()));
+
         Predicate<Integer> lessthan = i -> (i < 10);
 
         System.out.println(lessthan.test(20));
 
-        Stream.iterate(new long[] {1,1}, p->new long[]{p[1],p[0]+p[1]}).limit(5)
-                .forEach( p -> System.out.println(p[0]));
+        Stream.iterate(new long[] {1,1}, p->new long[]{p[1],p[0]+p[1]}).limit(10)
+                .forEach( p -> System.out.print(p[0]));
+
+
+
+        Stream.iterate(new long[]{1,1}, p -> new long[]{p[1],p[0]+p[1]}).limit(10)
+                .forEach(p -> System.out.println(p) );
+
+       // Stream.iterate(new long[] {1,1}, p-> new long[]{p[1],p[0]+p[1]}).limit(5).forEach(p -> System.out.print(p[0]));
+
+
 
         //palindrome
         String str="abcba";

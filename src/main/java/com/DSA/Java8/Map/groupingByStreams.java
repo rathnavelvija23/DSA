@@ -2,6 +2,7 @@ package com.DSA.Java8.Map;
 
 import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -24,6 +25,33 @@ public class groupingByStreams {
                 },Collectors.summingInt(Employee::getEmpId)
 
         )).forEach((k,v) -> System.out.println(k +"<--Key : Value -->"+ v));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //   "2024-01-17" , "2024-01-18", "2024-01-19"  ->> {Feburary-22 = countof empid}
+
+        Map<String, Integer> str = Objectcreate().values().stream().collect(Collectors.groupingBy(e -> {
+            Employee e1 = (Employee) e;
+            return e1.getDate().getMonth().toString() + "-" + String.valueOf(e1.getDate().getYear()).substring(2,4);
+        }, LinkedHashMap::new,Collectors.summingInt(Employee::getEmpId)));
+
+        System.out.println( Objectcreate().entrySet().stream()
+                .map( c-> c.getValue()).collect(Collectors.groupingBy(Employee::getCity,Collectors.counting())));
+        System.out.println(str);
     }
 
     private static void groupbyCity() {

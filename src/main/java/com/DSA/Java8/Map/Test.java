@@ -1,5 +1,7 @@
 package com.DSA.Java8.Map;
 
+
+
 import java.time.LocalDate;
 import java.util.*;
 import java.util.function.Function;
@@ -30,6 +32,12 @@ public class Test {
         list.add(new Employee(7,"emp4","city4", LocalDate.now()));
         list.add(new Employee(5,"emp5","city5", LocalDate.now()));
         System.out.println("list"+list.stream().count());
+
+        List newList = new ArrayList();
+        newList.add(1);
+        newList.add("2");
+        newList.add(2.0d);
+        System.out.println("dummy list"+newList);
 
         Map<String,Integer> empCity = list.stream().collect(Collectors.groupingBy(Employee::getCity,Collectors.summingInt(Employee::getEmpId)));
         System.out.println("list"+empCity);
@@ -64,6 +72,33 @@ public class Test {
                         .thenComparing(Employee::getName).reversed()))
                 .collect(Collectors.toMap(Map.Entry::getKey,Map.Entry::getValue,(l1,l2) -> l2 , LinkedHashMap::new));
                 //.forEach((k,v) -> System.out.println("Key=="+k+"...."+"Value=="+v) );
+
+
+        System.out.println("Newwwww"  +   map.entrySet().stream()
+                .sorted(Map.Entry.comparingByValue(Comparator.comparing(Employee::getEmpId).thenComparing(Employee::getDate).reversed())
+        ).collect(Collectors.toMap(Map.Entry::getKey,
+                        e ->{
+            Employee d1 = e.getValue();
+            d1.setCity("Updated");
+            return d1;
+                        },
+                        (v1,v2)->v1,LinkedHashMap::new)));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         map.entrySet().stream()

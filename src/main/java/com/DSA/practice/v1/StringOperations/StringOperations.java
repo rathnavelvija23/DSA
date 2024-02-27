@@ -1,4 +1,4 @@
-package com.DSA.practice.StringOperations;
+package com.DSA.practice.v1.StringOperations;
 
 
 
@@ -8,10 +8,20 @@ import java.util.stream.Collectors;
 
 public class StringOperations {
 
+    public static void main(String[] args) {
+        System.out.println(Operations.repeatValuesbasedonCount("a2b4c1d3").equals("aabbbbcddd") ? true : false);
+        System.out.println(Operations.countbasedonRepeatValues("aabbbbcddd").equals("a2b4c1d3") ? true : false);
+        System.out.println(Operations.nonRepeatedStringFrequency("red green blue white red blue").equals("green white") ? true : false);
+        System.out.println(Operations.nonRepeatedStringGrouping("red green blue white red blue").equals("green white") ? true : false);
+        System.out.println(Operations.getLongestString("red green blue orange").equals("orange") ? true : false);
+        System.out.println(Operations.getIntStringStartswithOne(new int[]{1, 2, 3, 4, 11, 5, 6, 66}).equals("1,11") ? true : false);
+        System.out.println(Operations.modifytheString("java8_sp3r_j9p").equals("java#spr#jp") ? true : false);
+
+    }
     static class  Operations{
 
+        //("a2b4c1d3").equals("aabbbbcddd")
          static String repeatValuesbasedonCount(String str){
-
              StringBuilder stringBuilder = new StringBuilder();
              char[] chArray = str.toCharArray();
              for(int i =0 ;i <chArray.length;i+=2){
@@ -21,6 +31,19 @@ public class StringOperations {
                  }
              }
              return stringBuilder.toString();
+        }
+
+        // new int[]{1, 2, 3, 4, 11, 5, 6, 66}).equals("1,11") ? true : false);
+        static String getIntStringStartswithOne(int[] intArray) {
+            return Arrays.stream(intArray).mapToObj( c -> c+"")
+                    .filter( a-> a.startsWith("1")).collect(Collectors.joining(","));
+        }
+//("java8_sp3r_j9p").equals("java#spr#jp")
+        static String modifytheString(String str) {
+            return str.chars().mapToObj(c -> (char) c).filter( c-> !Character.isDigit(c))
+                    .map( c -> c.equals('_') ? String.valueOf('#') : String.valueOf(c))
+                    .collect(Collectors.joining());
+
         }
 
         static String nonRepeatedStringFrequency(String str){
@@ -55,30 +78,7 @@ public class StringOperations {
         return longString.get();
         }
 
-        static String getIntStringStartswithOne(int[] intArray) {
-
-           return Arrays.stream(intArray).mapToObj( c -> c+"")
-                     .filter( a-> a.startsWith("1")).collect(Collectors.joining(","));
-
-
-        }
-
-        static String modifytheString(String str) {
-            return str.chars().mapToObj(c -> (char) c).filter( c-> !Character.isDigit(c))
-                    .map( c -> c.equals('_') ? String.valueOf('#') : String.valueOf(c))
-                    .collect(Collectors.joining());
-
-        }
     }
 
-    public static void main(String[] args) {
-        System.out.println(Operations.repeatValuesbasedonCount("a2b4c1d3").equals("aabbbbcddd") ? true : false);
-        System.out.println(Operations.countbasedonRepeatValues("aabbbbcddd").equals("a2b4c1d3") ? true : false);
-        System.out.println(Operations.nonRepeatedStringFrequency("red green blue white red blue").equals("green white") ? true : false);
-        System.out.println(Operations.nonRepeatedStringGrouping("red green blue white red blue").equals("green white") ? true : false);
-        System.out.println(Operations.getLongestString("red green blue orange").equals("orange") ? true : false);
-        System.out.println(Operations.getIntStringStartswithOne(new int[]{1, 2, 3, 4, 11, 5, 6, 66}).equals("1,11") ? true : false);
-        System.out.println(Operations.modifytheString("java8_sp3r_j9p").equals("java#spr#jp") ? true : false);
 
-    }
 }
