@@ -4,5 +4,14 @@ DataStructure
 
 Choosing Algorithm:
 
-1) Time Complexity
-2) Space Complexity
+1) Time Complexity -> Time taken
+2) Space Complexity -> Any variable(space) is used
+
+Asymptotic Notaions:
+1) Best Case
+2) Average Case
+3) Worst Case
+
+Types:
+
+1) Omega Notation

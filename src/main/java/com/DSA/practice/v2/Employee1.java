@@ -2,6 +2,7 @@ package com.DSA.practice.v2;
 
 
 
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.*;
@@ -21,27 +22,33 @@ public class Employee1 {
         static List<Employee1> getEmployeesOrderByDobDescending(List<Employee1> employeeList) {
 
 
-            return null;
+            return employeeList.stream().sorted(Comparator.comparing(Employee1::getDateOfBirth).reversed()).collect(Collectors.toList());
         }
 
         static List<Long> getEmployeeIdsHavingAnnualSalaryLessThan1500(List<Employee1> employeeList)
         {
 
-            return employeeList.stream().filter(e -> e.getSalary().intValue() < 1500)
-                    .map(c -> c.getEmpId())
-                    .collect(Collectors.toList());
+           return employeeList.stream().filter( c-> c.getSalary().intValue() <=1500).map( c -> c.getEmpId()).collect(Collectors.toList());
+
+
 
         }
 
         static List<Double> getAverageSalaryForEachDepartment(List<Employee1> employeeList)
         {
+            Map<Long, Double> list = employeeList.stream().collect(Collectors.groupingBy(Employee1::getEmpId, Collectors.averagingInt(e -> e.getSalary().intValue())));
+            List<Double> list1 = list.entrySet().stream().map(c -> c.getValue()).collect(Collectors.toList());
+            System.out.println(list1+"--"+list1.hashCode()+"--"+list.hashCode());
+            return list1;
 
-            return null;
+
         }
 
         static Integer getFirstRepeatedORFirstDuplicateDept(List<Employee1> employeeList)
         {
-
+            Map<Integer, Long> map = employeeList.stream().collect(Collectors.groupingBy(Employee1::getDeptId, LinkedHashMap::new, Collectors.counting()));
+            System.out.println(map);
+            System.out.println(map.entrySet().stream().filter( c -> c.getValue() >1).map( c-> c.getKey()).skip(1).limit(1).findAny().get());
             return null;
         }
 
@@ -59,7 +66,16 @@ public class Employee1 {
 
         static LinkedHashMap<Long, Employee1> addonedaytoDOBAndModifyDeptidasfivetosevenGetasMap(List<Employee1> employeeList) {
 
-            return null;
+
+            LinkedHashMap<Long, Employee1> output = employeeList.stream().collect(Collectors.toMap(e -> e.getEmpId(), e -> {
+                LocalDate date = LocalDate.parse(e.getDateOfBirth()).plusDays(2);
+                e.setDateOfBirth(date.toString());
+                if (e.getDeptId() == 4) {
+                    e.setDeptId(7);
+                }
+                return e;
+            }, (v1, v2) -> v2, LinkedHashMap::new));
+            return output;
         }
 
 

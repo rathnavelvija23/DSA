@@ -3,6 +3,9 @@ package com.DSA.practice.v2;
 
 
 
+
+import com.DSA.practice.v1.StringOperations.StringOperations;
+
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -39,11 +42,10 @@ public class StringOperations1 {
         //("java8_sp3r_j9p").equals("java#spr#jp")
         static String modifytheString(String str) {
 
-            String collect = str.chars().mapToObj(c -> (char) c).filter(i -> !Character.isDigit(i))
-                    .map(c -> c.equals('_') ? String.valueOf('#') : String.valueOf(c))
-                    .collect(Collectors.joining());
+            String collect = str.chars().mapToObj(c -> (char) c).filter(c -> !Character.isDigit(c))
+                    .map(c -> c.equals('_') ? String.valueOf('#') : String.valueOf(c)).collect(Collectors.joining());
 
-            System.out.println(collect);
+            System.out.println(str.chars());
 
         return collect;
 
@@ -53,28 +55,21 @@ public class StringOperations1 {
 
         static String nonRepeatedStringFrequency(String str){
 
-            List<String> stringList = Arrays.asList(str.split(" "));
+            List<String> strList=Arrays.asList(str.split(" "));
+            System.out.println(strList.stream().filter( c -> Collections.frequency(strList, c) == 1)
+                    .collect(Collectors.joining(" ")));
 
-           String out=  stringList.stream().filter( c -> Collections.frequency(stringList,c) == 1)
-                   .collect(Collectors.joining(" "));
-            List<String> stringList1=  stringList.stream().filter( c -> Collections.frequency(stringList,c) == 1)
-                    .collect(Collectors.toList());
-
-            System.out.println(stringList.hashCode());
-            System.out.println(stringList.stream().filter( c -> Collections.frequency(stringList,c) == 1)
-                    .collect(Collectors.toList()).hashCode());
-            return out;
+            return "";
 
         }
 
         static String nonRepeatedStringGrouping(String str){
 
-        String out    = Arrays.stream(str.split(" ")).collect(Collectors
-                    .groupingBy(Function.identity(),LinkedHashMap::new,Collectors.counting()))
+            String out = Arrays.stream(str.split(" "))
+                    .collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()))
                     .entrySet().stream().filter(e -> e.getValue() == 1)
-                    .map( e-> e.getKey())
-                    .collect(Collectors.joining(" "));
-            System.out.println(out);
+                    .map(e -> e.getKey()).collect(Collectors.joining(" "));
+            System.out.println(":::::"+out);
         return out;
 
 

@@ -22,21 +22,22 @@ public class StringOperations {
 
         //("a2b4c1d3").equals("aabbbbcddd")
          static String repeatValuesbasedonCount(String str){
-             StringBuilder stringBuilder = new StringBuilder();
-             char[] chArray = str.toCharArray();
-             for(int i =0 ;i <chArray.length;i+=2){
-                 int count = Character.getNumericValue(chArray[i+1]);
-                 for(int j=1;j<=count;j++){
-                     stringBuilder.append(chArray[i]);
-                 }
-             }
-             return stringBuilder.toString();
+             StringBuilder builder = new StringBuilder();
+            char[] chArray = str.toCharArray();
+            for(int i=0;i<chArray.length;i+=2){
+                int count = Character.getNumericValue(chArray[i+1]);
+                while(count > 0){
+                    builder.append(chArray[i]);
+                    count--;
+                }
+            }
+             //System.out.println(builder.toString());
+             return builder.toString();
         }
 
         // new int[]{1, 2, 3, 4, 11, 5, 6, 66}).equals("1,11") ? true : false);
         static String getIntStringStartswithOne(int[] intArray) {
-            return Arrays.stream(intArray).mapToObj( c -> c+"")
-                    .filter( a-> a.startsWith("1")).collect(Collectors.joining(","));
+           return Arrays.stream(intArray).mapToObj( c-> c+"").filter( c -> c.startsWith("1")).collect(Collectors.joining(","));
         }
 //("java8_sp3r_j9p").equals("java#spr#jp")
         static String modifytheString(String str) {
